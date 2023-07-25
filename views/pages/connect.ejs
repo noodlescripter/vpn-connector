@@ -1,0 +1,76 @@
+<%- layout('./templates/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center">Connect to VPN (Network)</h1>
+        <div class="col-6 offset-3">
+            <div class="text-bg-danger">
+                <p>If you do not provide valid email address you will not have the network access</p>
+            </div>
+            <form action="/networkinfos" method="POST" novalidate class="form-validation">
+                <div class="mb-2">
+                    <label class="form-label" for="netID">NETWOTK ID</label>
+                    <input type="text" class="form-control" id="netID" name="networkid" placeholder="-----" minlength="10" maxlength="10" required>
+                    <div class="valid-feedback">
+                        Looks guuuuuuuuud
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="userName">You Name</label>
+                    <input type="text" class="form-control" id="userName" name="fullname" placeholder="Joe Biden" required>
+                    <div class="valid-feedback">
+                        Looks guuuuuuuuud
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="emailID">Your email address</label>
+                    <input type="text" class="form-control" id="emailID" name="email" placeholder="test@email.com" required>
+                    <div class="valid-feedback">
+                        Looks guuuuuuuuud
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="device" required>
+                          <option selected disabled value = ''>-- Please Select --</option>
+                          <option value="Mac OS">Mac OS</option>
+                          <option value="Windows">Windows</option>
+                          <option value="Linux (Debian)">Linux (Debian)</option>
+                          <option value="Linux (Arch)">Linux (Arch)</option>
+                          <div class="valid-feedback">
+                            Looks guuuuuuuuud
+                        </div>
+                        </select>
+                        <label for="floatingSelect">Which OS are you using?</label>
+                      </div>
+                      
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success" id="buttonsubmit">
+                        Request Access
+                    </button>
+                    <p class="text-danger invisible" id="emailfeedback">Wrong Email Dammmmn it!!!!</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    const inEmail = document.getElementById('emailID');
+    const emailFeedback = document.getElementById('emailfeedback');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const button = document.getElementById('buttonsubmit');
+
+    inEmail.addEventListener('change', function () {
+        const email = inEmail.value;
+        const isValidEmail = emailRegex.test(email);
+        if (!isValidEmail) {
+            event.preventDefault();
+            event.stopPropagation();
+            inEmail.classList.add('is-invalid');
+            button.classList.add('disabled');
+            emailFeedback.classList.remove('invisible');
+        } else {
+            inEmail.classList.remove('is-invalid');
+            button.classList.remove('disabled');
+            emailFeedback.classList.add('invisible');
+        }
+    });
+</script>

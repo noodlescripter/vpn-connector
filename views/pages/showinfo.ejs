@@ -1,0 +1,34 @@
+<%- layout('./templates/boilerplate') %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">NetworkID</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Device</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let info of allInfos) { %>
+                <tr>
+                    <th scope="row">
+                        <%= info.networkid %>
+                    </th>
+                    <td>
+                        <%= info.fullname %>
+                    </td>
+                    <td>
+                        <%= info.email %>
+                    </td>
+                    <td>
+                        <%= info.device %>
+                    </td>
+                </tr>
+                <% } %>
+
+        </tbody>
+    </table>
+
+    <script>
+        
+    </script>
