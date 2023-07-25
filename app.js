@@ -67,6 +67,10 @@ app.get('/show/allowme', async (req, res) => {
     const allInfos = await NetworkInfo.find({});
     res.render('pages/showinfo.ejs', {allInfos});
 });
+
+app.get("*/**", function(req, res){
+    res.render('pages/notfound')
+})
 //server
 app.listen(9999, function(){
     log("app is up on http://localhost:9999");
